@@ -1,7 +1,7 @@
 import 'package:clivia_base/component/popage.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:flutter/material.dart';
 
-import '../../generated/l10n.dart';
 import '../../user.dart';
 
 class ChangePage extends StatefulWidget {
@@ -55,7 +55,7 @@ class _ChangePageState extends State<ChangePage> {
                       Navigator.pop(context, true);
                     }
                   },
-                  child: Text(S.of(context).save),
+                  child: Text(l10n('save')),
                 ),
               ),
             ],

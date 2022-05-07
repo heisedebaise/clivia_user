@@ -13,8 +13,6 @@ dependencies:
     path: ../clivia_base
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
   intl: ^0.17.0
 
 dev_dependencies:
@@ -58,5 +56,3 @@ flutter:
 #
 # For details regarding fonts in packages, see
 # https://flutter.dev/custom-font
-flutter_intl:
-  enabled: trues/#from-packages

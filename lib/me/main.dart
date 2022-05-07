@@ -1,10 +1,10 @@
 import 'package:clivia_base/component/dividers.dart';
 import 'package:clivia_base/notifier.dart';
 import 'package:clivia_base/util/context.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../generated/l10n.dart';
 import '../user.dart';
 import 'aboutus.dart';
 import 'feedback.dart';
@@ -51,7 +51,7 @@ class _MePageState extends State<MePage> {
     List<Widget> children = [
       Padding(
         padding: const EdgeInsets.all(8),
-        child: Text(S.of(context).meSettings),
+        child: Text(l10n('me.settings')),
       ),
       Dividers.line,
       const Language(),
@@ -62,8 +62,8 @@ class _MePageState extends State<MePage> {
     }
     children.add(Dividers.line);
     children.add(SwitchListTile(
-      title: Text(S.of(context).meSettingsDark),
-      subtitle: Text(S.of(context).meSettingsDarkExplain),
+      title: Text(l10n('me.settings.dark')),
+      subtitle: Text(l10n('me.settings.dark.explain')),
       value: Theme.of(context).brightness == Brightness.dark,
       onChanged: (bool on) async {
         await Context.set('theme', on ? 'dark' : 'light');

@@ -1,9 +1,9 @@
 import 'package:clivia_base/component/password.dart';
 import 'package:clivia_base/component/popage.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
 
-import '../../generated/l10n.dart';
 import '../../user.dart';
 import '../language.dart';
 import '../privacy.dart';
@@ -32,7 +32,7 @@ class _InUpPageState extends State<InUpPage> {
       if (User.gesture()) {
         PageRouter.push(
           PasswordPage(
-            S.of(context).meSignIn,
+            l10n('sign.in'),
             'user.sign-in.gesture',
             complete: (value) async {
               String? string = await User.signInGesture(value);
@@ -51,7 +51,7 @@ class _InUpPageState extends State<InUpPage> {
       child: PopPage(
         popable: User.anonymous,
         close: true,
-        title: up ? S.of(context).meSignUp : S.of(context).meSignIn,
+        title: l10n('sign.${up ? 'up' : 'in'}'),
         actions: [
           Language(
             icon: true,
@@ -73,13 +73,13 @@ class _InUpPageState extends State<InUpPage> {
 
   List<Widget> children() {
     List<Widget> list = [];
-    list.add(text(Icons.person, S.of(context).meSignUsername, username));
-    list.add(pass(S.of(context).meSignPassword, password));
+    list.add(text(Icons.person, l10n('sign.username'), username));
+    list.add(pass(l10n('sign.password'), password));
     if (up) {
-      list.add(pass(S.of(context).meSignPasswordRepeat, repeat));
+      list.add(pass(l10n('sign.password.repeat'), repeat));
       list.add(text(
         Icons.face_retouching_natural,
-        S.of(context).meSignNickNew,
+        l10n('sign.nick.new'),
         nick,
       ));
       list.add(Row(
@@ -97,11 +97,11 @@ class _InUpPageState extends State<InUpPage> {
             onPressed: () {
               PageRouter.push(const PrivacyAgreementPage());
             },
-            child: Text(S.of(context).meSignUpPrivacyAgreement),
+            child: Text(l10n('sign.privacy-agreement')),
           ),
         ],
       ));
-      list.add(elevated(S.of(context).meSignUp));
+      list.add(elevated(l10n('sign.up')));
       list.add(Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -111,12 +111,12 @@ class _InUpPageState extends State<InUpPage> {
                 up = false;
               });
             },
-            child: Text(S.of(context).meSignToIn),
+            child: Text(l10n('sign.to-in')),
           ),
         ],
       ));
     } else {
-      list.add(elevated(S.of(context).meSignIn));
+      list.add(elevated(l10n('sign.in')));
       list.add(Row(
         children: [
           TextButton(
@@ -125,14 +125,14 @@ class _InUpPageState extends State<InUpPage> {
                 up = true;
               });
             },
-            child: Text(S.of(context).meSignToUp),
+            child: Text(l10n('sign.to-up')),
           ),
           Expanded(
             child: Container(),
           ),
           TextButton(
             onPressed: () {},
-            child: Text(S.of(context).meSignPasswordForget),
+            child: Text(l10n('sign.password.forget')),
           ),
         ],
       ));

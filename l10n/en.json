@@ -1,0 +1,100 @@
+{
+  "me": {
+    "settings": {
+      "": "Settings",
+      "language": {
+        "": "Language",
+        "select": "Select your language"
+      },
+      "lock-screen": {
+        "": "Automatically lock screen",
+        "on": "Enable automatic screen lock",
+        "off": "Turn off automatic screen lock",
+        "password": "Lock screen password",
+        "wrong": "Lock screen password wrong",
+        "same": "Same as lock screen password!"
+      },
+      "dark": {
+        "": "Dark mode",
+        "explain": "The interface is mainly black, which helps to save power and reduce the damage of light to the eyes"
+      }
+    },
+    "feedback": {
+      "": "Feedback",
+      "memo": "Your comments and suggestions are very important to us, thank you very much for your support!"
+    },
+    "version": {
+      "": "Version",
+      "forward": "Go to update"
+    },
+    "upload-log": {
+      "": "Upload Log",
+      "memo": "The uploaded log is only used to find bugs and will be deleted immediately after troubleshooting. Thank you very much for your support!"
+    },
+    "privacy-agreement": "Privacy Agreement",
+    "about-us": "About Us"
+  },
+  "sign": {
+    "nick": {
+      "": "Nickname",
+      "empty": "Please set a nickname",
+      "new": "Take a personal nickname",
+      "change": {
+        "": "Change Nickname",
+        "memo": "A personalized nickname can make it easier for your friends to remember you"
+      }
+    },
+    "info": "Personal Information",
+    "avatar": {
+      "": "Avatar",
+      "meSignAvatarChange": "Change Avatar"
+    },
+    "gesture": {
+      "": "Gesture Password",
+      "on": "Enable gesture password",
+      "off": "Turn off gesture password",
+      "wrong": "Wrong gesture password!",
+      "same": "Same as gesture password!"
+    },
+    "mobile": {
+      "": "Mobile",
+      "change": "Change Mobile"
+    },
+    "email": {
+      "": "Email",
+      "change": "Change Email"
+    },
+    "qr-code": "QR Code Business Card",
+    "destroy": {
+      "": "Destroy password",
+      "on": "Enable destroy password",
+      "off": "Turn off destroy password",
+      "wrong": "Wrong destroy password!",
+      "memo": "Enter the destroy password when logging in or unlocking the screen, and the account will be automatically destroyed immediately!",
+      "account": {
+        "": "Destroy account",
+        "memo": "Account information will be completely deleted after logout and cannot be recovered!"
+      },
+      "password": "Please enter your login password",
+      "same": "Same as destroy password!"
+    },
+    "up": {
+      "": "Sign Up",
+      "privacy-agreement": "I have read and agree to the Privacy Agreement"
+    },
+    "in": {
+      "": "Sign In",
+      "gesture": "Please enter the gesture password"
+    },
+    "out": "Retreat safely",
+    "username": "Please enter your username",
+    "password": {
+      "": "Please enter the password",
+      "repeat": "Please enter the password again",
+      "wrong": "Wrong password!",
+      "forget": "Forgot password"
+    },
+    "to-up": "Register a new account",
+    "to-in": "I already have an account"
+  }
+}

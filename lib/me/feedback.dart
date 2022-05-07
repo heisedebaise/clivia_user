@@ -1,15 +1,14 @@
 import 'package:clivia_base/component/popage.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
-
-import '../generated/l10n.dart';
 
 class FeedBack extends StatelessWidget {
   const FeedBack({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(S.of(context).meFeedback),
+        title: Text(l10n('me.feedback')),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
           PageRouter.push(const FeedBackPage());
@@ -30,14 +29,14 @@ class _FeedBackPageState extends State<FeedBackPage> {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: S.of(context).meFeedback,
+        title: l10n('me.feedback'),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                S.of(context).meFeedbackMemo,
+                l10n('me.feedback.memo'),
                 style: Theme.of(context).textTheme.bodyText2,
               ),
               Expanded(
@@ -70,7 +69,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                   onPressed: () async {
                     Navigator.pop(context);
                   },
-                  child: Text(S.of(context).meFeedbackSubmit),
+                  child: Text(l10n('submit')),
                 ),
               ),
             ],

@@ -6,17 +6,16 @@ import 'package:clivia_base/util/context.dart';
 import 'package:clivia_base/util/http.dart';
 import 'package:clivia_base/util/io.dart';
 import 'package:clivia_base/util/keyvalue.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
-
-import '../generated/l10n.dart';
 
 class PrivacyAgreement extends StatelessWidget {
   const PrivacyAgreement({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(S.of(context).mePrivacyAgreement),
+        title: Text(l10n('me.privacy-agreement')),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
           PageRouter.push(const PrivacyAgreementPage());
@@ -59,7 +58,7 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: S.of(context).mePrivacyAgreement,
+        title: l10n('me.privacy-agreement'),
         body: Pdfview(path: path),
       );
 }

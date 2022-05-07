@@ -1,9 +1,6 @@
-import 'package:clivia_base/notifier.dart';
-import 'package:clivia_base/util/context.dart';
+import 'package:clivia_base/component/dividers.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../generated/l10n.dart';
 
 class Language extends StatefulWidget {
   const Language({Key? key, this.icon = false, this.color}) : super(key: key);
@@ -17,11 +14,7 @@ class Language extends StatefulWidget {
 
 class _LanguageState extends State<Language> {
   final Divider divider = const Divider(height: 1);
-  final Map<String, String> map = {
-    'en': 'English',
-    'zh': '简体中文',
-  };
-  String key = Context.get('language', defaultValue: 'en');
+  String key = L10n.locale;
 
   @override
   Widget build(BuildContext context) => widget.icon ? icon() : list();
@@ -35,8 +28,8 @@ class _LanguageState extends State<Language> {
       );
 
   Widget list() => ListTile(
-        title: Text(S.of(context).meLanguage),
-        subtitle: Text(map[key]!),
+        title: Text(l10n('me.settings.language')),
+        subtitle: Text(L10n.languages[key] ?? ''),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: show,
       );
@@ -44,32 +37,35 @@ class _LanguageState extends State<Language> {
   void show() {
     showModalBottomSheet(
       context: context,
-      builder: (builder) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
+      builder: (builder) {
+        List<Widget> list = [
           Padding(
             padding: const EdgeInsets.all(8),
-            child: Text(S.of(context).meLanguageSelect),
+            child: Text(l10n('me.settings.language.select')),
           ),
-          divider,
-          item('en'),
-          divider,
-          item('zh')
-        ],
-      ),
+        ];
+        for (String key in L10n.languages.keys) {
+          list.add(Dividers.line);
+          list.add(item(key));
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: list,
+        );
+      },
     );
   }
 
   Widget item(String key) => ListTile(
-        title: Text(map[key]!),
+        title: Text(L10n.languages[key] ?? ''),
         trailing: key == this.key ? const Icon(Icons.check) : null,
         onTap: () async {
-          Context.set('language', key);
           setState(() {
             this.key = key;
           });
-          Provider.of<Notifier>(context, listen: false).notify();
+          await L10n.setLocale(key);
         },
       );
 }

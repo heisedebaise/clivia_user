@@ -1,10 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:clivia_base/component/popage.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:clivia_base/util/upgrader.dart';
 import 'package:flutter/material.dart';
-
-import '../generated/l10n.dart';
 
 class Version extends StatelessWidget {
   const Version({Key? key}) : super(key: key);
@@ -13,13 +12,13 @@ class Version extends StatelessWidget {
   Widget build(BuildContext context) => ListTile(
         title: Row(
           children: [
-            Expanded(child: Text(S.of(context).meVersion)),
+            Expanded(child: Text(l10n('me.version'))),
             name(context),
           ],
         ),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          PageRouter.push( const VersionPage());
+          PageRouter.push(const VersionPage());
         },
       );
 
@@ -42,7 +41,7 @@ class VersionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: S.of(context).meVersion,
+        title: l10n('me.version'),
         body: ListView(
           children: [
             Column(
@@ -62,8 +61,7 @@ class VersionPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Text(
-                        Upgrader.name() + '.' + Upgrader.version.toString()),
+                    child: Text(Upgrader.name() + '.' + Upgrader.version.toString()),
                   ),
                   const Divider(height: 1),
                   Padding(
@@ -87,7 +85,7 @@ class VersionPage extends StatelessWidget {
         width: double.infinity,
         child: ElevatedButton(
           onPressed: Upgrader.forward,
-          child: Text(S.of(context).meVersionForward),
+          child: Text(l10n('me.version.forward')),
         ),
       ),
     );

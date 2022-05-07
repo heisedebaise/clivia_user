@@ -3,9 +3,8 @@ import 'dart:io';
 import 'package:clivia_base/util/context.dart';
 import 'package:clivia_base/util/http.dart';
 import 'package:clivia_base/util/io.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:flutter/material.dart';
-
-import 'generated/l10n.dart';
 
 class User {
   static bool anonymous = true;
@@ -142,13 +141,13 @@ class User {
       case '':
         return '';
       case 'screen':
-        return S.of(context).meSettingsLockScreenSame;
+        return l10n('me.settings.lock-screen.same');
       case 'gesture':
-        return S.of(context).meSignGestureSame;
+        return l10n('sign.gesture.same');
       case 'destroy':
-        return S.of(context).meSignDestroySame;
+        return l10n('sign.destroy.same');
       default:
-        return S.of(context).failure;
+        return l10n('failure');
     }
   }
 

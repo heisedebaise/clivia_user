@@ -1,8 +1,8 @@
 import 'package:clivia_base/component/password.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
 
-import '../generated/l10n.dart';
 import '../user.dart';
 
 const String _levelKey = 'settings.lock-screen.level';
@@ -17,17 +17,17 @@ class LockScreen extends StatefulWidget {
 class _LockScreenState extends State<LockScreen> {
   @override
   Widget build(BuildContext context) => SwitchListTile(
-        title: Text(S.of(context).meSettingsLockScreen),
+        title: Text(l10n('me.settings.lock-screen')),
         value: User.screen(),
         onChanged: (bool on) async {
           PageRouter.push(
             PasswordPage(
-              on ? S.of(context).meSettingsLockScreenOn : S.of(context).meSettingsLockScreenOff,
+              l10n('me.settings.lock-screen.${on ? 'on' : 'off'}'),
               _levelKey,
               full: true,
               twice: on,
               complete: (value) async {
-                return await User.passwordOnOff(context, on, 'screen', value, setState, S.of(context).meSettingsLockScreenWrong);
+                return await User.passwordOnOff(context, on, 'screen', value, setState, l10n('me.settings.lock-screen.wrong'));
               },
             ),
           );
@@ -49,7 +49,7 @@ class ScreenLocker {
     _on = true;
     PageRouter.push(
       PasswordPage(
-        S.of(context).meSettingsLockScreenPassword,
+        l10n('me.settings.lock-screen.password'),
         _levelKey,
         popable: false,
         full: true,
@@ -60,7 +60,7 @@ class ScreenLocker {
             return Future.value(null);
           }
 
-          return Future.value(S.of(context).meSettingsLockScreenWrong);
+          return Future.value(l10n('me.settings.lock-screen.wrong'));
         },
       ),
     );

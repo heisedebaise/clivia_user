@@ -1,8 +1,8 @@
 import 'package:clivia_base/component/avatar.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
 
-import '../generated/l10n.dart';
 import '../user.dart';
 import 'sign/inup.dart';
 import 'sign/main.dart';
@@ -34,7 +34,7 @@ class _SignState extends State<Sign> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      User.nick(S.of(context).meSignNickEmpty),
+                      User.nick(l10n('sign.nick.empty')),
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
                     Row(

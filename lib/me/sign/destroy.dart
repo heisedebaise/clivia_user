@@ -1,10 +1,10 @@
 import 'package:clivia_base/component/password.dart';
 import 'package:clivia_base/util/http.dart';
+import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/notice.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
 
-import '../../generated/l10n.dart';
 import '../../user.dart';
 
 class DestroyPassword extends StatefulWidget {
@@ -17,18 +17,18 @@ class DestroyPassword extends StatefulWidget {
 class _DestroyPasswordState extends State<DestroyPassword> {
   @override
   Widget build(BuildContext context) => SwitchListTile(
-        title: Text(S.of(context).meSignDestroy),
-        subtitle: Text(S.of(context).meSignDestroyMemo),
+        title: Text(l10n('sign.destroy')),
+        subtitle: Text(l10n('sign.destroy.memo')),
         value: User.destroy(),
         onChanged: (bool on) {
           PageRouter.push(
             PasswordPage(
-              on ? S.of(context).meSignDestroyOn : S.of(context).meSignDestroyOff,
+              l10n('sign.destroy.${on ? 'on' : 'off'}'),
               'user.sign-in.destroy',
               twice: on,
               full: true,
               complete: (value) async {
-                return await User.passwordOnOff(context, on, 'destroy', value, setState, S.of(context).meSignDestroyWrong);
+                return await User.passwordOnOff(context, on, 'destroy', value, setState, l10n('sign.destroy.wrong'));
               },
             ),
           );
@@ -42,24 +42,24 @@ class Destroy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(S.of(context).meSignDestroyAccount),
-        subtitle: Text(S.of(context).meSignDestroyAccountMemo),
+        title: Text(l10n('sign.destroy.account')),
+        subtitle: Text(l10n('sign.destroy.account.memo')),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text(S.of(context).meSignDestroyAccount),
+              title: Text(l10n('sign.destroy.account')),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(S.of(context).meSignDestroyAccountMemo),
+                  Text(l10n('sign.destroy.account.memo')),
                   TextField(
                     obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
-                      labelText: S.of(context).meSignDestroyPassword,
+                      labelText: l10n('sign.destroy.password'),
                     ),
                     controller: _controller,
                   )
@@ -70,16 +70,16 @@ class Destroy extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(S.of(context).cancel)),
+                    child: Text(l10n('cancel'))),
                 TextButton(
                     onPressed: () async {
                       dynamic data = await Http.service('/user/destroy', data: {'password': _controller.text});
                       if (data != null && !data) {
-                        Notice.error(0, S.of(context).meSignPasswordWrong);
+                        Notice.error(0, l10n('sign.password.wrong'));
                       }
                     },
                     child: Text(
-                      S.of(context).ok,
+                      l10n('ok'),
                       style: const TextStyle(
                         color: Colors.red,
                       ),
