@@ -48,7 +48,7 @@ class VersionPage extends StatelessWidget {
             Column(
               children: [
                 Image.asset(
-                  'assets/images/logo.png',
+                  'images/logo.png',
                   width: 128,
                   fit: BoxFit.fill,
                 ),
