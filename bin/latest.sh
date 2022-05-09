@@ -1,7 +1,6 @@
 #!/bin/bash
 
 dependencies=(
- intl
  badges
 )
 
