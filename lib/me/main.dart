@@ -1,14 +1,12 @@
+import 'package:clivia_base/component/dark.dart';
 import 'package:clivia_base/component/dividers.dart';
-import 'package:clivia_base/notifier.dart';
-import 'package:clivia_base/util/context.dart';
+import 'package:clivia_base/component/language.dart';
 import 'package:clivia_base/util/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../user.dart';
 import 'aboutus.dart';
 import 'feedback.dart';
-import 'language.dart';
 import 'lockscreen.dart';
 import 'privacy.dart';
 import 'sign.dart';
@@ -61,15 +59,7 @@ class _MePageState extends State<MePage> {
       children.add(const LockScreen());
     }
     children.add(Dividers.line);
-    children.add(SwitchListTile(
-      title: Text(l10n(context, 'me.settings.dark')),
-      subtitle: Text(l10n(context, 'me.settings.dark.explain')),
-      value: Theme.of(context).brightness == Brightness.dark,
-      onChanged: (bool on) async {
-        await Context.set('theme', on ? 'dark' : 'light');
-        Provider.of<Notifier>(context, listen: false).notify();
-      },
-    ));
+    children.add(const Dark());
 
     return Card(
       child: Column(

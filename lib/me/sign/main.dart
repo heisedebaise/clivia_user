@@ -1,4 +1,5 @@
 import 'package:clivia_base/component/avatar.dart';
+import 'package:clivia_base/component/dividers.dart';
 import 'package:clivia_base/component/password.dart';
 import 'package:clivia_base/component/picture.dart';
 import 'package:clivia_base/component/popage.dart';
@@ -22,8 +23,6 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPageState extends State<SignPage> {
-  final Divider divider = const Divider(height: 1);
-
   @override
   Widget build(BuildContext context) => PopPage(
         title: l10n(context, 'sign.info'),
@@ -34,37 +33,37 @@ class _SignPageState extends State<SignPage> {
               Avatar(uri: User.avatar(''), nick: User.nick(''), size: 32),
               0,
             ),
-            divider,
+            Dividers.line,
             item(
               l10n(context, 'sign.nick'),
               Text(User.nick(l10n(context, 'sign.nick.empty'))),
               1,
             ),
-            divider,
+            Dividers.line,
             gesture(),
-            divider,
+            Dividers.line,
             item(
               l10n(context, 'sign.mobile'),
               Text(User.get('mobile', l10n(context, 'unset'))),
               2,
             ),
-            divider,
+            Dividers.line,
             item(
               l10n(context, 'sign.email'),
               Text(User.get('email', l10n(context, 'unset'))),
               3,
             ),
-            divider,
+            Dividers.line,
             item(
               l10n(context, 'sign.qr-code'),
               const Icon(Icons.qr_code_2),
               4,
             ),
-            divider,
+            Dividers.line,
             const DestroyPassword(),
-            divider,
+            Dividers.line,
             Destroy(),
-            divider,
+            Dividers.line,
             button(
               l10n(context, 'sign.out'),
               () async {

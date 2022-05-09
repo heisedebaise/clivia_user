@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:clivia_base/component/dividers.dart';
 import 'package:clivia_base/component/popage.dart';
 import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
@@ -63,7 +64,7 @@ class VersionPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8),
                     child: Text(Upgrader.name() + '.' + Upgrader.version.toString()),
                   ),
-                  const Divider(height: 1),
+                  Dividers.line,
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(Upgrader.explain()),
