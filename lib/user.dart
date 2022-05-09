@@ -202,4 +202,10 @@ class User {
     await Io.delete('');
     exit(0);
   }
+
+  static Future<Map<String, dynamic>> find(String idUidCode) async {
+    Map<String, dynamic>? map = await Http.service("/user/find", data: {'idUidCode': idUidCode});
+
+    return Future.value(map == null || map.isEmpty || !map.containsKey('code') ? {} : map);
+  }
 }

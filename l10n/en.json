@@ -1,5 +1,6 @@
 {
   "sign": {
+    "in-up-first": "Please login or register first",
     "nick": {
       "": "Nickname",
       "empty": "Please set a nickname",
