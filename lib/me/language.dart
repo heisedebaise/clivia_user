@@ -28,7 +28,7 @@ class _LanguageState extends State<Language> {
       );
 
   Widget list() => ListTile(
-        title: Text(l10n('me.settings.language')),
+        title: Text(l10n(context, 'me.settings.language')),
         subtitle: Text(L10n.languages[key] ?? ''),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: show,
@@ -41,7 +41,7 @@ class _LanguageState extends State<Language> {
         List<Widget> list = [
           Padding(
             padding: const EdgeInsets.all(8),
-            child: Text(l10n('me.settings.language.select')),
+            child: Text(l10n(context, 'me.settings.language.select')),
           ),
         ];
         for (String key in L10n.languages.keys) {
@@ -65,7 +65,7 @@ class _LanguageState extends State<Language> {
           setState(() {
             this.key = key;
           });
-          await L10n.setLocale(key);
+          await L10n.setLocale(context, key);
         },
       );
 }

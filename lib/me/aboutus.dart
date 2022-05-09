@@ -9,7 +9,7 @@ class AboutUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(l10n('me.about-us')),
+        title: Text(l10n(context, 'me.about-us')),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
           PageRouter.push(const AboutUsPage());
@@ -23,7 +23,7 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: l10n('me.about-us'),
+        title: l10n(context, 'me.about-us'),
         body: const Webview(
           url: 'https://github.com/heisedebaise/clivia-app',
         ),

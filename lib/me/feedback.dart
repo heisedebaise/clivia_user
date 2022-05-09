@@ -8,7 +8,7 @@ class FeedBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(l10n('me.feedback')),
+        title: Text(l10n(context, 'me.feedback')),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
           PageRouter.push(const FeedBackPage());
@@ -29,14 +29,14 @@ class _FeedBackPageState extends State<FeedBackPage> {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: l10n('me.feedback'),
+        title: l10n(context, 'me.feedback'),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n('me.feedback.memo'),
+                l10n(context, 'me.feedback.memo'),
                 style: Theme.of(context).textTheme.bodyText2,
               ),
               Expanded(
@@ -69,7 +69,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                   onPressed: () async {
                     Navigator.pop(context);
                   },
-                  child: Text(l10n('submit')),
+                  child: Text(l10n(context, 'submit')),
                 ),
               ),
             ],

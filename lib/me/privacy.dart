@@ -15,7 +15,7 @@ class PrivacyAgreement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(l10n('me.privacy-agreement')),
+        title: Text(l10n(context, 'me.privacy-agreement')),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () {
           PageRouter.push(const PrivacyAgreementPage());
@@ -58,7 +58,7 @@ class _PrivacyAgreementPageState extends State<PrivacyAgreementPage> {
   @override
   Widget build(BuildContext context) => PopPage(
         close: true,
-        title: l10n('me.privacy-agreement'),
+        title: l10n(context, 'me.privacy-agreement'),
         body: Pdfview(path: path),
       );
 }

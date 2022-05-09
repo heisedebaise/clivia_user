@@ -51,7 +51,7 @@ class _MePageState extends State<MePage> {
     List<Widget> children = [
       Padding(
         padding: const EdgeInsets.all(8),
-        child: Text(l10n('me.settings')),
+        child: Text(l10n(context, 'me.settings')),
       ),
       Dividers.line,
       const Language(),
@@ -62,8 +62,8 @@ class _MePageState extends State<MePage> {
     }
     children.add(Dividers.line);
     children.add(SwitchListTile(
-      title: Text(l10n('me.settings.dark')),
-      subtitle: Text(l10n('me.settings.dark.explain')),
+      title: Text(l10n(context, 'me.settings.dark')),
+      subtitle: Text(l10n(context, 'me.settings.dark.explain')),
       value: Theme.of(context).brightness == Brightness.dark,
       onChanged: (bool on) async {
         await Context.set('theme', on ? 'dark' : 'light');

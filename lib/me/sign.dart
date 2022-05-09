@@ -34,7 +34,7 @@ class _SignState extends State<Sign> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      User.nick(l10n('sign.nick.empty')),
+                      User.nick(l10n(context, 'sign.nick.empty')),
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
                     Row(

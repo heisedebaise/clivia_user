@@ -6,23 +6,23 @@ class UploadLog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        title: Text(l10n('me.upload-log')),
+        title: Text(l10n(context, 'me.upload-log')),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () async {
           await showDialog<void>(
             context: context,
             barrierDismissible: false,
             builder: (BuildContext context) => AlertDialog(
-              content: Text(l10n('me.upload-log.memo')),
+              content: Text(l10n(context, 'me.upload-log.memo')),
               actions: <Widget>[
                 TextButton(
-                  child: Text(l10n('ok')),
+                  child: Text(l10n(context, 'ok')),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
                 TextButton(
-                  child: Text(l10n('cancel')),
+                  child: Text(l10n(context, 'cancel')),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },

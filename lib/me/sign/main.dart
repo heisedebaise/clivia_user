@@ -26,37 +26,37 @@ class _SignPageState extends State<SignPage> {
 
   @override
   Widget build(BuildContext context) => PopPage(
-        title: l10n('sign.info'),
+        title: l10n(context, 'sign.info'),
         body: ListView(
           children: [
             item(
-              l10n('sign.avatar'),
+              l10n(context, 'sign.avatar'),
               Avatar(uri: User.avatar(''), nick: User.nick(''), size: 32),
               0,
             ),
             divider,
             item(
-              l10n('sign.nick'),
-              Text(User.nick(l10n('sign.nick.empty'))),
+              l10n(context, 'sign.nick'),
+              Text(User.nick(l10n(context, 'sign.nick.empty'))),
               1,
             ),
             divider,
             gesture(),
             divider,
             item(
-              l10n('sign.mobile'),
-              Text(User.get('mobile', l10n('unset'))),
+              l10n(context, 'sign.mobile'),
+              Text(User.get('mobile', l10n(context, 'unset'))),
               2,
             ),
             divider,
             item(
-              l10n('sign.email'),
-              Text(User.get('email', l10n('unset'))),
+              l10n(context, 'sign.email'),
+              Text(User.get('email', l10n(context, 'unset'))),
               3,
             ),
             divider,
             item(
-              l10n('sign.qr-code'),
+              l10n(context, 'sign.qr-code'),
               const Icon(Icons.qr_code_2),
               4,
             ),
@@ -66,7 +66,7 @@ class _SignPageState extends State<SignPage> {
             Destroy(),
             divider,
             button(
-              l10n('sign.out'),
+              l10n(context, 'sign.out'),
               () async {
                 await User.signOut();
                 if (User.anonymous) {
@@ -102,7 +102,7 @@ class _SignPageState extends State<SignPage> {
     switch (index) {
       case 0:
         return PicturePage(
-          title: l10n('sign.avatar.change'),
+          title: l10n(context, 'sign.avatar.change'),
           upload: 'clivia.user.avatar',
           uri: User.avatar(''),
           ratio: 1,
@@ -113,21 +113,21 @@ class _SignPageState extends State<SignPage> {
         );
       case 1:
         return ChangePage(
-          l10n('sign.nick.change'),
+          l10n(context, 'sign.nick.change'),
           Icons.face_retouching_natural,
           'nick',
-          l10n('sign.nick.change.memo'),
+          l10n(context, 'sign.nick.change.memo'),
         );
       case 2:
         return ChangePage(
-          l10n('sign.mobile.change'),
+          l10n(context, 'sign.mobile.change'),
           Icons.phone,
           'mobile',
           '',
         );
       case 3:
         return ChangePage(
-          l10n('sign.email.change'),
+          l10n(context, 'sign.email.change'),
           Icons.email,
           'email',
           '',
@@ -147,16 +147,16 @@ class _SignPageState extends State<SignPage> {
   }
 
   Widget gesture() => SwitchListTile(
-        title: Text(l10n('sign.gesture')),
+        title: Text(l10n(context, 'sign.gesture')),
         value: User.gesture(),
         onChanged: (bool on) {
           PageRouter.push(
             PasswordPage(
-              l10n('sign.gesture.${on ? 'on' : 'off'}'),
+              l10n(context, 'sign.gesture.${on ? 'on' : 'off'}'),
               'user.sign-in.gesture',
               twice: on,
               complete: (value) async {
-                return await User.passwordOnOff(context, on, 'gesture', value, setState, l10n('sign.gesture.wrong'));
+                return await User.passwordOnOff(context, on, 'gesture', value, setState, l10n(context, 'sign.gesture.wrong'));
               },
             ),
           );

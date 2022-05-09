@@ -32,7 +32,7 @@ class _InUpPageState extends State<InUpPage> {
       if (User.gesture()) {
         PageRouter.push(
           PasswordPage(
-            l10n('sign.in'),
+            l10n(context, 'sign.in'),
             'user.sign-in.gesture',
             complete: (value) async {
               String? string = await User.signInGesture(value);
@@ -51,7 +51,7 @@ class _InUpPageState extends State<InUpPage> {
       child: PopPage(
         popable: User.anonymous,
         close: true,
-        title: l10n('sign.${up ? 'up' : 'in'}'),
+        title: l10n(context, 'sign.${up ? 'up' : 'in'}'),
         actions: [
           Language(
             icon: true,
@@ -73,13 +73,13 @@ class _InUpPageState extends State<InUpPage> {
 
   List<Widget> children() {
     List<Widget> list = [];
-    list.add(text(Icons.person, l10n('sign.username'), username));
-    list.add(pass(l10n('sign.password'), password));
+    list.add(text(Icons.person, l10n(context, 'sign.username'), username));
+    list.add(pass(l10n(context, 'sign.password'), password));
     if (up) {
-      list.add(pass(l10n('sign.password.repeat'), repeat));
+      list.add(pass(l10n(context, 'sign.password.repeat'), repeat));
       list.add(text(
         Icons.face_retouching_natural,
-        l10n('sign.nick.new'),
+        l10n(context, 'sign.nick.new'),
         nick,
       ));
       list.add(Row(
@@ -97,11 +97,11 @@ class _InUpPageState extends State<InUpPage> {
             onPressed: () {
               PageRouter.push(const PrivacyAgreementPage());
             },
-            child: Text(l10n('sign.privacy-agreement')),
+            child: Text(l10n(context, 'sign.privacy-agreement')),
           ),
         ],
       ));
-      list.add(elevated(l10n('sign.up')));
+      list.add(elevated(l10n(context, 'sign.up')));
       list.add(Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -111,12 +111,12 @@ class _InUpPageState extends State<InUpPage> {
                 up = false;
               });
             },
-            child: Text(l10n('sign.to-in')),
+            child: Text(l10n(context, 'sign.to-in')),
           ),
         ],
       ));
     } else {
-      list.add(elevated(l10n('sign.in')));
+      list.add(elevated(l10n(context, 'sign.in')));
       list.add(Row(
         children: [
           TextButton(
@@ -125,14 +125,14 @@ class _InUpPageState extends State<InUpPage> {
                 up = true;
               });
             },
-            child: Text(l10n('sign.to-up')),
+            child: Text(l10n(context, 'sign.to-up')),
           ),
           Expanded(
             child: Container(),
           ),
           TextButton(
             onPressed: () {},
-            child: Text(l10n('sign.password.forget')),
+            child: Text(l10n(context, 'sign.password.forget')),
           ),
         ],
       ));
