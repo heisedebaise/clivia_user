@@ -1,7 +1,6 @@
 #!/bin/bash
 
 dependencies=(
- badges
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

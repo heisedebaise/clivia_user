@@ -1,12 +1,12 @@
 import 'package:clivia_base/component/language.dart';
 import 'package:clivia_base/component/password.dart';
 import 'package:clivia_base/component/popage.dart';
+import 'package:clivia_base/page/privacy.dart';
 import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
 
 import '../../user.dart';
-import '../privacy.dart';
 
 class InUpPage extends StatefulWidget {
   const InUpPage({Key? key}) : super(key: key);

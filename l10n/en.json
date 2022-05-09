@@ -1,31 +1,4 @@
 {
-  "me": {
-    "settings": {
-      "": "Settings",
-      "lock-screen": {
-        "": "Automatically lock screen",
-        "on": "Enable automatic screen lock",
-        "off": "Turn off automatic screen lock",
-        "password": "Lock screen password",
-        "wrong": "Lock screen password wrong",
-        "same": "Same as lock screen password!"
-      }
-    },
-    "feedback": {
-      "": "Feedback",
-      "memo": "Your comments and suggestions are very important to us, thank you very much for your support!"
-    },
-    "version": {
-      "": "Version",
-      "forward": "Go to update"
-    },
-    "upload-log": {
-      "": "Upload Log",
-      "memo": "The uploaded log is only used to find bugs and will be deleted immediately after troubleshooting. Thank you very much for your support!"
-    },
-    "privacy-agreement": "Privacy Agreement",
-    "about-us": "About Us"
-  },
   "sign": {
     "nick": {
       "": "Nickname",
