@@ -62,5 +62,11 @@
     },
     "to-up": "Register a new account",
     "to-in": "I already have an account"
+  },
+  "upload": {
+    "content-type": "Content type",
+    "filename": "File name",
+    "uri": "URI",
+    "time": "Upload time"
   }
 }

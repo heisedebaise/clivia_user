@@ -59,5 +59,11 @@
     },
     "to-up": "注册新账号",
     "to-in": "我已有账号"
+  },
+  "upload": {
+    "content-type": "文件类型",
+    "filename": "文件名",
+    "uri": "URI",
+    "time": "上传时间"
   }
 }
