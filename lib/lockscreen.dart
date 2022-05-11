@@ -17,17 +17,17 @@ class LockScreen extends StatefulWidget {
 class _LockScreenState extends State<LockScreen> {
   @override
   Widget build(BuildContext context) => SwitchListTile(
-        title: Text(l10n(context, 'me.settings.lock-screen')),
+        title: Text(l10n(context, 'lock-screen')),
         value: User.screen(),
         onChanged: (bool on) async {
           PageRouter.push(
             PasswordPage(
-              l10n(context, 'me.settings.lock-screen.${on ? 'on' : 'off'}'),
+              l10n(context, 'lock-screen.${on ? 'on' : 'off'}'),
               _levelKey,
               full: true,
               twice: on,
               complete: (value) async {
-                return await User.passwordOnOff(context, on, 'screen', value, setState, l10n(context, 'me.settings.lock-screen.wrong'));
+                return await User.passwordOnOff(context, on, 'screen', value, setState, l10n(context, 'lock-screen.wrong'));
               },
             ),
           );
@@ -49,7 +49,7 @@ class ScreenLocker {
     _on = true;
     PageRouter.push(
       PasswordPage(
-        l10n(context, 'me.settings.lock-screen.password'),
+        l10n(context, 'lock-screen.password'),
         _levelKey,
         popable: false,
         full: true,
@@ -60,7 +60,7 @@ class ScreenLocker {
             return Future.value(null);
           }
 
-          return Future.value(l10n(context, 'me.settings.lock-screen.wrong'));
+          return Future.value(l10n(context, 'lock-screen.wrong'));
         },
       ),
     );

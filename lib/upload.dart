@@ -1,6 +1,5 @@
 import 'package:clivia_base/component/cachedimage.dart';
 import 'package:clivia_base/component/popage.dart';
-import 'package:clivia_base/util/context.dart';
 import 'package:clivia_base/util/http.dart';
 import 'package:clivia_base/util/picker.dart';
 import 'package:clivia_base/util/router.dart';
@@ -38,11 +37,7 @@ class _FileUploadPageState extends State<FileUploadPage> {
               String? path = await pickImage(ImageSource.gallery);
               if (path == null) return;
 
-              if (Context.isWeb) {
-                await Http.upload('clivia.user.upload', bytes: getBytesFromBase64(path), contentType: getContentTypeFromBase64(path));
-              } else {
-                await Http.upload('clivia.user.upload', file: path);
-              }
+              await Http.upload('clivia.user.upload', file: path);
               number = 0;
               list.clear();
               await load();
