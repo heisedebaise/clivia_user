@@ -4,7 +4,6 @@ import 'package:clivia_base/util/http.dart';
 import 'package:clivia_base/util/picker.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class FileUploadPage extends StatefulWidget {
   final void Function(List<Upload> uploads) select;
@@ -34,7 +33,7 @@ class _FileUploadPageState extends State<FileUploadPage> {
           IconButton(
             icon: const Icon(Icons.cloud_upload_outlined),
             onPressed: () async {
-              String? path = await pickImage(ImageSource.gallery);
+              String? path = await pickImage();
               if (path == null) return;
 
               await Http.upload('clivia.user.upload', file: path);
