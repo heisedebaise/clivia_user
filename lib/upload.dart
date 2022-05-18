@@ -33,10 +33,9 @@ class _FileUploadPageState extends State<FileUploadPage> {
           IconButton(
             icon: const Icon(Icons.cloud_upload_outlined),
             onPressed: () async {
-              String? path = await pickImage();
-              if (path == null) return;
+              String? path = await Picker.uploadImage('clivia.user.upload');
+              if (path == null || path.isEmpty) return;
 
-              await Http.upload('clivia.user.upload', file: path);
               number = 0;
               list.clear();
               await load();
