@@ -28,7 +28,7 @@ class _InUpPageState extends State<InUpPage> {
   void initState() {
     super.initState();
     username.text = User.uid();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (User.gesture()) {
         PageRouter.push(
           PasswordPage(
