@@ -97,7 +97,7 @@ class _InUpPageState extends State<InUpPage> {
             onPressed: () {
               PageRouter.push(const PrivacyAgreementPage());
             },
-            child: Text(l10n(context, 'sign.privacy-agreement')),
+            child: Text(l10n(context, 'sign.up.privacy-agreement')),
           ),
         ],
       ));
