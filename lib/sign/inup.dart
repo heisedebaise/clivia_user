@@ -82,25 +82,7 @@ class _InUpPageState extends State<InUpPage> {
         l10n(context, 'sign.nick.new'),
         nick,
       ));
-      list.add(Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Checkbox(
-            value: agree,
-            onChanged: (value) {
-              setState(() {
-                agree = value ?? false;
-              });
-            },
-          ),
-          TextButton(
-            onPressed: () {
-              PageRouter.push(const PrivacyAgreementPage());
-            },
-            child: Text(l10n(context, 'sign.up.privacy-agreement')),
-          ),
-        ],
-      ));
+      list.add(privacy());
       list.add(elevated(l10n(context, 'sign.up')));
       list.add(Row(
         mainAxisSize: MainAxisSize.min,
@@ -116,6 +98,7 @@ class _InUpPageState extends State<InUpPage> {
         ],
       ));
     } else {
+      list.add(privacy());
       list.add(elevated(l10n(context, 'sign.in')));
       list.add(Row(
         children: [
@@ -166,19 +149,43 @@ class _InUpPageState extends State<InUpPage> {
         controller: controller,
       );
 
+  Widget privacy() => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Checkbox(
+            value: agree,
+            onChanged: (value) {
+              setState(() {
+                agree = value ?? false;
+              });
+            },
+          ),
+          TextButton(
+            onPressed: () {
+              PageRouter.push(const PrivacyAgreementPage());
+            },
+            child: Text(l10n(context, 'sign.up.privacy-agreement')),
+          ),
+        ],
+      );
+
   Widget elevated(String text) => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: up && !agree
-              ? null
-              : () async {
-                  if (up) {
-                    if (await User.signUp(username.text, password.text, nick.text)) Navigator.pop(context);
-                  } else {
-                    if (await User.signIn(username.text, password.text)) Navigator.pop(context);
-                  }
-                },
+          onPressed: inup,
           child: Text(text),
         ),
       );
+
+  Function? inup() {
+    if (!agree) return null;
+
+    return () async {
+      if (up) {
+        if (await User.signUp(username.text, password.text, nick.text)) Navigator.pop(context);
+      } else {
+        if (await User.signIn(username.text, password.text)) Navigator.pop(context);
+      }
+    };
+  }
 }
