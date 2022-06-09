@@ -172,20 +172,16 @@ class _InUpPageState extends State<InUpPage> {
   Widget elevated(String text) => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: inup,
+          onPressed: agree ? inup : null,
           child: Text(text),
         ),
       );
 
-  Function? inup() {
-    if (!agree) return null;
-
-    return () async {
-      if (up) {
-        if (await User.signUp(username.text, password.text, nick.text)) Navigator.pop(context);
-      } else {
-        if (await User.signIn(username.text, password.text)) Navigator.pop(context);
-      }
-    };
+  Future<void> inup() async {
+    if (up) {
+      if (await User.signUp(username.text, password.text, nick.text)) Navigator.pop(context);
+    } else {
+      if (await User.signIn(username.text, password.text)) Navigator.pop(context);
+    }
   }
 }
