@@ -208,4 +208,10 @@ class User {
 
     return Future.value(map == null || map.isEmpty || !map.containsKey('code') ? {} : map);
   }
+
+  static void inup(){
+    if(User.on())return;
+
+
+  }
 }
