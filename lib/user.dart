@@ -108,6 +108,8 @@ class User {
 
   static String nick(String empty) => get('nick', empty);
 
+  static int grade() => get('grade', 0);
+
   static dynamic get(String key, dynamic empty) {
     return _map[key] ?? empty;
   }
@@ -207,11 +209,5 @@ class User {
     Map<String, dynamic>? map = await Http.service("/user/find", data: {'idUidCode': idUidCode});
 
     return Future.value(map == null || map.isEmpty || !map.containsKey('code') ? {} : map);
-  }
-
-  static void inup(){
-    if(User.on())return;
-
-
   }
 }
