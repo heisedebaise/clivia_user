@@ -143,13 +143,13 @@ class User {
       case '':
         return '';
       case 'screen':
-        return l10n(context, 'me.settings.lock-screen.same');
+        return l10n(null, 'me.settings.lock-screen.same');
       case 'gesture':
-        return l10n(context, 'sign.gesture.same');
+        return l10n(null, 'sign.gesture.same');
       case 'destroy':
-        return l10n(context, 'sign.destroy.same');
+        return l10n(null, 'sign.destroy.same');
       default:
-        return l10n(context, 'failure');
+        return l10n(null, 'failure');
     }
   }
 

@@ -55,7 +55,7 @@ class _ChangePageState extends State<ChangePage> {
                       Navigator.pop(context, true);
                     }
                   },
-                  child: Text(l10n(context, 'save')),
+                  child: Text(l10n(null, 'save')),
                 ),
               ),
             ],
