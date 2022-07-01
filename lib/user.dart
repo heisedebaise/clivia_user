@@ -4,6 +4,8 @@ import 'package:clivia_base/util/context.dart';
 import 'package:clivia_base/util/http.dart';
 import 'package:clivia_base/util/io.dart';
 import 'package:clivia_base/util/l10n.dart';
+import 'package:clivia_base/util/router.dart';
+import 'package:clivia_user/sign/inup.dart';
 import 'package:flutter/material.dart';
 
 class User {
@@ -35,6 +37,12 @@ class User {
     });
 
     await sign();
+  }
+
+  static Future<bool> signInUp() async {
+    await PageRouter.push(const InUpPage());
+
+    return Future.value(on());
   }
 
   static Future<bool> signUp(String username, String password, String nick) async {
