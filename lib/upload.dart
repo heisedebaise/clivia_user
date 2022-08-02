@@ -33,8 +33,8 @@ class _FileUploadPageState extends State<FileUploadPage> {
           IconButton(
             icon: const Icon(Icons.cloud_upload_outlined),
             onPressed: () async {
-              String? path = await Picker.uploadImage('clivia.user.upload');
-              if (path == null || path.isEmpty) return;
+              Map<String,dynamic>? data = await Picker.uploadImage('clivia.user.upload');
+              if (data == null || data.isEmpty||!data.containsKey('path')) return;
 
               number = 0;
               list.clear();
