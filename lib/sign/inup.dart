@@ -2,6 +2,7 @@ import 'package:clivia_base/component/language.dart';
 import 'package:clivia_base/component/password.dart';
 import 'package:clivia_base/component/popage.dart';
 import 'package:clivia_base/page/privacy.dart';
+import 'package:clivia_base/util/context.dart';
 import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _InUpPageState extends State<InUpPage> {
   TextEditingController repeat = TextEditingController();
   TextEditingController nick = TextEditingController();
   bool visibility = false;
-  bool agree = false;
+  late bool agree = Context.get('user.agree', defaultValue: false);
 
   @override
   void initState() {
@@ -155,9 +156,9 @@ class _InUpPageState extends State<InUpPage> {
           Checkbox(
             value: agree,
             onChanged: (value) {
-              setState(() {
-                agree = value ?? false;
-              });
+              agree = value ?? false;
+              Context.set('user.agree', agree);
+              setState(() {});
             },
           ),
           TextButton(
