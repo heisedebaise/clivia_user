@@ -89,11 +89,6 @@ class User {
     if (map['code'] > 0) return Future.value(map['message']);
 
     await sign();
-    if (_listeners.isNotEmpty) {
-      for (UserListener listener in _listeners) {
-        await listener.signIn();
-      }
-    }
 
     return Future.value(null);
   }
@@ -104,6 +99,11 @@ class User {
       _map = map;
       await Context.set('user.id', map['id']);
       await _password();
+      if (_listeners.isNotEmpty) {
+        for (UserListener listener in _listeners) {
+          await listener.signIn();
+        }
+      }
     }
   }
 
