@@ -5,6 +5,7 @@ import 'package:clivia_base/util/http.dart';
 import 'package:clivia_base/util/io.dart';
 import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
+import 'package:clivia_user/listener.dart';
 import 'package:clivia_user/sign/inup.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class User {
     'gender',
     'birthday',
   ];
+  static final List<UserListener> _listeners = [];
 
   static Future<void> init() async {
     Http.listen((uri, headers) async {
@@ -73,6 +75,11 @@ class User {
     m['user.id'] = map['id'];
     await Context.sets(m);
     await _password();
+    if (_listeners.isNotEmpty) {
+      for (UserListener listener in _listeners) {
+        await listener.signIn();
+      }
+    }
 
     return Future.value(true);
   }
@@ -82,6 +89,11 @@ class User {
     if (map['code'] > 0) return Future.value(map['message']);
 
     await sign();
+    if (_listeners.isNotEmpty) {
+      for (UserListener listener in _listeners) {
+        await listener.signIn();
+      }
+    }
 
     return Future.value(null);
   }
@@ -204,6 +216,11 @@ class User {
   static Future<void> signOut() async {
     await Http.service('/user/sign-out');
     _map = {};
+    if (_listeners.isNotEmpty) {
+      for (UserListener listener in _listeners) {
+        await listener.signOut();
+      }
+    }
 
     return Future.value(null);
   }
@@ -218,4 +235,6 @@ class User {
 
     return Future.value(map == null || map.isEmpty || !map.containsKey('code') ? {} : map);
   }
+
+  static void addListener(UserListener listener) => _listeners.add(listener);
 }
