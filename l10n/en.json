@@ -44,14 +44,10 @@
       "password": "Please enter your login password",
       "same": "Same as destroy password!"
     },
-    "up": {
-      "": "Sign Up",
-      "privacy-agreement": "I have read and agree to the Privacy Agreement"
-    },
-    "in": {
-      "": "Sign In",
-      "gesture": "Please enter the gesture password"
-    },
+    "privacy-agreement": "I have read and agree to the Privacy Agreement",
+    "captcha": "Slide to authenticate",
+    "up": "Sign Up",
+    "in": "Sign In",
     "out": "Retreat safely",
     "username": "Please enter your username",
     "password": {

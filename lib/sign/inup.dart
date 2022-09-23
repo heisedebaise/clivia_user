@@ -1,11 +1,14 @@
+import 'package:clivia_base/component/dialog.dart';
 import 'package:clivia_base/component/language.dart';
 import 'package:clivia_base/component/password.dart';
 import 'package:clivia_base/component/popage.dart';
 import 'package:clivia_base/page/privacy.dart';
 import 'package:clivia_base/util/context.dart';
+import 'package:clivia_base/util/generator.dart';
 import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
+import 'package:slider_captcha/slider_capchar.dart';
 
 import '../../user.dart';
 
@@ -24,6 +27,7 @@ class _InUpPageState extends State<InUpPage> {
   TextEditingController nick = TextEditingController();
   bool visibility = false;
   late bool agree = Context.get('user.agree', defaultValue: false);
+  SliderController controller = SliderController();
 
   @override
   void initState() {
@@ -165,7 +169,7 @@ class _InUpPageState extends State<InUpPage> {
             onPressed: () {
               PageRouter.push(const PrivacyAgreementPage());
             },
-            child: Text(l10n(context, 'sign.up.privacy-agreement')),
+            child: Text(l10n(context, 'sign.privacy-agreement')),
           ),
         ],
       );
@@ -179,6 +183,27 @@ class _InUpPageState extends State<InUpPage> {
       );
 
   Future<void> inup() async {
+    Color color = Colors.primaries[Generator.range(0, Colors.primaries.length)];
+    bool? b = await Dialogs.show(
+      context,
+      content: SliderCaptcha(
+        title: l10n(null, 'sign.captcha'),
+        controller: controller,
+        image: Image.asset(
+          'images/logo.png',
+          fit: BoxFit.fitWidth,
+        ),
+        colorBar: color,
+        colorCaptChar: color,
+        onConfirm: (value) async {
+          if (value) {
+            PageRouter.pop(true);
+          }
+        },
+      ),
+    );
+    if (b == null || !b) return;
+
     if (up) {
       if (await User.signUp(username.text, password.text, nick.text)) Navigator.pop(context);
     } else {

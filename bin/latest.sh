@@ -1,6 +1,7 @@
 #!/bin/bash
 
 dependencies=(
+  slider_captcha
 )
 
 for i in `seq 0 $[${#dependencies[*]}-1]`; do

@@ -44,10 +44,9 @@
       "password": "请输入登录密码",
       "same": "与注销密码相同！"
     },
-    "up": {
-      "": "注册",
-      "privacy-agreement": "我已阅读并同意隐私协议"
-    },
+    "privacy-agreement": "我已阅读并同意隐私协议",
+    "captcha": "滑动验证",
+    "up": "注册",
     "in": "登录",
     "out": "安全退出",
     "username": "请输入用户名",

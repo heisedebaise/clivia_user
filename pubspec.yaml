@@ -12,6 +12,7 @@ dependencies:
     path: ../clivia_base
   flutter:
     sdk: flutter
+  slider_captcha: ^0.1.7
 
 dev_dependencies:
   flutter_test:
