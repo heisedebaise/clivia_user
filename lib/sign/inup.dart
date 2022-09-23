@@ -5,6 +5,8 @@ import 'package:clivia_base/component/popage.dart';
 import 'package:clivia_base/page/privacy.dart';
 import 'package:clivia_base/util/context.dart';
 import 'package:clivia_base/util/generator.dart';
+import 'package:clivia_base/util/http.dart';
+import 'package:clivia_base/util/keyvalue.dart';
 import 'package:clivia_base/util/l10n.dart';
 import 'package:clivia_base/util/router.dart';
 import 'package:flutter/material.dart';
@@ -183,18 +185,15 @@ class _InUpPageState extends State<InUpPage> {
       );
 
   Future<void> inup() async {
-    Color color = Colors.primaries[Generator.range(0, Colors.primaries.length)];
+    Image img = await image();
     bool? b = await Dialogs.show(
       context,
       content: SliderCaptcha(
         title: l10n(null, 'sign.captcha'),
         controller: controller,
-        image: Image.asset(
-          'images/logo.png',
-          fit: BoxFit.fitWidth,
-        ),
-        colorBar: color,
-        colorCaptChar: color,
+        image: img,
+        colorBar: color(),
+        colorCaptChar: color(),
         onConfirm: (value) async {
           if (value) {
             PageRouter.pop(true);
@@ -210,4 +209,21 @@ class _InUpPageState extends State<InUpPage> {
       if (await User.signIn(username.text, password.text)) Navigator.pop(context);
     }
   }
+
+  Future<Image> image() async {
+    String string = await Keyvalue.value('setting.global.slider-captcha');
+    if (string != '') {
+      return Future.value(Image.network(
+        Http.url(string),
+        fit: BoxFit.fitWidth,
+      ));
+    }
+
+    return Future.value(Image.asset(
+      'images/logo.png',
+      fit: BoxFit.fitWidth,
+    ));
+  }
+
+  Color color() => Colors.primaries[Generator.range(0, Colors.primaries.length)];
 }
