@@ -185,23 +185,28 @@ class _InUpPageState extends State<InUpPage> {
       );
 
   Future<void> inup() async {
-    Image img = await image();
-    bool? b = await Dialogs.show(
-      context,
-      content: SliderCaptcha(
-        title: l10n(null, 'sign.captcha'),
-        controller: controller,
-        image: img,
-        colorBar: color(),
-        colorCaptChar: color(),
-        onConfirm: (value) async {
-          if (value) {
-            PageRouter.pop(true);
-          }
-        },
-      ),
-    );
-    if (b == null || !b) return;
+    Map<String, dynamic> map = await Keyvalue.map('setting.slider-captcha.');
+    if (map.isNotEmpty) {
+      if ((up && map['setting.slider-captcha.sign-up'] == '1') || (!up && map['setting.slider-captcha.sign-in'] == '1')) {
+        Image img = await image(map['setting.slider-captcha.image'] ?? '');
+        bool? b = await Dialogs.show(
+          context,
+          content: SliderCaptcha(
+            title: l10n(null, 'sign.captcha'),
+            controller: controller,
+            image: img,
+            colorBar: color(),
+            colorCaptChar: color(),
+            onConfirm: (value) async {
+              if (value) {
+                PageRouter.pop(true);
+              }
+            },
+          ),
+        );
+        if (b == null || !b) return;
+      }
+    }
 
     if (up) {
       if (await User.signUp(username.text, password.text, nick.text)) Navigator.pop(context);
@@ -210,11 +215,10 @@ class _InUpPageState extends State<InUpPage> {
     }
   }
 
-  Future<Image> image() async {
-    String string = await Keyvalue.value('setting.global.slider-captcha');
-    if (string != '') {
+  Future<Image> image(String uri) async {
+    if (uri != '') {
       return Future.value(Image.network(
-        Http.url(string),
+        Http.url(uri),
         fit: BoxFit.fitWidth,
       ));
     }
