@@ -6,9 +6,11 @@ import 'user.dart';
 class UserAvatar extends StatelessWidget {
   final double size;
   final bool circular;
+  final Color? background;
+  final Color? foreground;
   final GestureTapCallback? tap;
 
-  const UserAvatar({Key? key, this.size = 64, this.circular = false, this.tap}) : super(key: key);
+  const UserAvatar({Key? key, this.size = 64, this.circular = false, this.background, this.foreground, this.tap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -17,6 +19,8 @@ class UserAvatar extends StatelessWidget {
           nick: User.nick(''),
           size: size,
           circular: circular,
+          background: background,
+          foreground: foreground,
         ),
         onTap: tap,
       );
