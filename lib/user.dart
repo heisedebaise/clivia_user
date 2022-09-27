@@ -47,12 +47,13 @@ class User {
     return Future.value(on());
   }
 
-  static Future<bool> signUp(String username, String password, String nick) async {
+  static Future<bool> signUp(String username, String password, String nick, String invitecode) async {
     return _sign('/user/sign-up', {
       'type': '',
       'uid': username,
       'password': password,
       'nick': nick,
+      'invitecode': invitecode,
     });
   }
 

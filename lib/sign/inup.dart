@@ -22,12 +22,15 @@ class InUpPage extends StatefulWidget {
 }
 
 class _InUpPageState extends State<InUpPage> {
+  bool upable = false;
   bool up = false;
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController repeat = TextEditingController();
   TextEditingController nick = TextEditingController();
+  TextEditingController invitecode = TextEditingController();
   bool visibility = false;
+  bool icable = false;
   late bool agree = Context.get('user.agree', defaultValue: false);
   SliderController controller = SliderController();
 
@@ -50,6 +53,11 @@ class _InUpPageState extends State<InUpPage> {
           ),
         );
       }
+    });
+    Keyvalue.map('setting.user.sign-up.').then((data) {
+      if ((data['setting.user.sign-up.enable'] ?? '0') == '1') upable = true;
+      if ((data['setting.user.sign-up.invite-code'] ?? '0') == '1') icable = true;
+      if (mounted) setState(() {});
     });
   }
 
@@ -82,13 +90,10 @@ class _InUpPageState extends State<InUpPage> {
     List<Widget> list = [];
     list.add(text(Icons.person, l10n(context, 'sign.username'), username));
     list.add(pass(l10n(context, 'sign.password'), password));
-    if (up) {
+    if (upable && up) {
       list.add(pass(l10n(context, 'sign.password.repeat'), repeat));
-      list.add(text(
-        Icons.face_retouching_natural,
-        l10n(context, 'sign.nick.new'),
-        nick,
-      ));
+      list.add(text(Icons.face_retouching_natural, l10n(context, 'sign.nick.new'), nick));
+      if (icable) list.add(text(Icons.numbers_outlined, l10n(context, 'sign.invite-code'), invitecode));
       list.add(privacy());
       list.add(elevated(l10n(context, 'sign.up')));
       list.add(Row(
@@ -107,19 +112,24 @@ class _InUpPageState extends State<InUpPage> {
     } else {
       list.add(privacy());
       list.add(elevated(l10n(context, 'sign.in')));
+
+      Widget widget;
+      if (upable) {
+        widget = TextButton(
+          onPressed: () {
+            setState(() {
+              up = true;
+            });
+          },
+          child: Text(l10n(context, 'sign.to-up')),
+        );
+      } else {
+        widget = Container();
+      }
       list.add(Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TextButton(
-            onPressed: () {
-              setState(() {
-                up = true;
-              });
-            },
-            child: Text(l10n(context, 'sign.to-up')),
-          ),
-          Expanded(
-            child: Container(),
-          ),
+          widget,
           TextButton(
             onPressed: () {},
             child: Text(l10n(context, 'sign.password.forget')),
@@ -209,7 +219,7 @@ class _InUpPageState extends State<InUpPage> {
     }
 
     if (up) {
-      if (await User.signUp(username.text, password.text, nick.text)) Navigator.pop(context);
+      if (await User.signUp(username.text, password.text, nick.text, invitecode.text)) Navigator.pop(context);
     } else {
       if (await User.signIn(username.text, password.text)) Navigator.pop(context);
     }
