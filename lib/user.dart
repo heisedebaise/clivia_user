@@ -85,6 +85,15 @@ class User {
     return Future.value(true);
   }
 
+  static Future<String?> signInPassword(String password) async {
+    Map<String, dynamic> map = await Http.post('/user/sign-in-password', {'id': Context.get('user.id', defaultValue: ''), 'password': password});
+    if (map['code'] > 0) return Future.value(map['message']);
+
+    await sign();
+
+    return Future.value(null);
+  }
+
   static Future<String?> signInGesture(String gesture) async {
     Map<String, dynamic> map = await Http.post('/user/sign-in-gesture', {'id': Context.get('user.id', defaultValue: ''), 'gesture': gesture});
     if (map['code'] > 0) return Future.value(map['message']);
