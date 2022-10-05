@@ -227,6 +227,11 @@ class _InUpPageState extends State<InUpPage> {
 
   Future<Image> image(String uri) async {
     if (uri != '') {
+      if (uri.contains(',')) {
+        List<String> list = uri.split(',');
+        uri = list[Generator.range(0, list.length)];
+      }
+
       return Future.value(Image.network(
         Http.url(uri),
         fit: BoxFit.fitWidth,
