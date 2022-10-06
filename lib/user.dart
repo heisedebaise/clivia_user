@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:clivia_base/notifier.dart';
 import 'package:clivia_base/util/context.dart';
 import 'package:clivia_base/util/http.dart';
 import 'package:clivia_base/util/io.dart';
@@ -244,6 +245,23 @@ class User {
     Map<String, dynamic>? map = await Http.service("/user/find", data: {'idUidCode': idUidCode});
 
     return Future.value(map == null || map.isEmpty || !map.containsKey('code') ? {} : map);
+  }
+
+  static void onOrSignIn(BuildContext context, WidgetsBindingObserver observer, Future<void> Function() function, [bool pop = false]) {
+    if (on()) {
+      function();
+    } else {
+      WidgetsBinding.instance.addObserver(observer);
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+        await PageRouter.push(const InUpPage());
+        if (on()) {
+          function();
+        } else {
+          if (pop) PageRouter.pop();
+          Notifier.setNavigation(context, 0);
+        }
+      });
+    }
   }
 
   static void addListener(UserListener listener) => _listeners.add(listener);
