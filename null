@@ -1,0 +1,6 @@
+下列路径根据您的一个 .gitignore 文件而被忽略：
+clivia_user.iml
+pubspec.lock
+提示：如果您确实要添加它们，使用 -f 参数。
+提示：运行下面的命令来关闭本消息
+提示："git config advice.addIgnoredFile false"
